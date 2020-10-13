@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <script>
+        // 文档准备就绪
+        window.onload = function () {
+            let box = document.querySelector(".box"),
+                // 全局resolve
+                globalResolve = null;
+
+            // 运动函数
+            // type 方向
+            // dis 距离
+            function run(type, dis) {
+                return new Promise((resolve, reject) => {
+                    box.style[type] = dis;
+                    globalResolve = resolve;
+                })
+            }
+
+            box.addEventListener("transitionend", () => {
+                globalResolve()
+            })
+
+            run("left", "500px").then(() => {
+                return run("top", "500px")
+            }).then(() => {
+                return run("left", 0)
+            }).then(() => {
+                return run("top", 0)
+            }).then(() => {
+                return run("width", "600px")
+            }).then(() => {
+                return run("height", "600px")
+            }).then(() => {
+                return run("border-radius", "50%")
+            }).then(() => {
+                return run("left", "50%")
+            }).then(() => {
+                return run("top", "50%")
+            }).then(() => {
+                return run("transform", "translate(-50%,-50%)")
+            })
+
+
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数
+        function Fn(name, age = 20) {
+            this.name = name;
+            this.age = age;
+        }
+        // 原型
+        // 通过new 出来的实例化对象所共有
+        Fn.prototype = {
+            constructor: Fn,
+            sayName() {
+                console.log(this.name)
+            }
+        }
+        // 静态方法
+        Fn.sayName = function () {
+            console.log("王五")
+        }
+
+        let f1 = new Fn("张三", 18);
+        let f2 = new Fn("李四");
+
+        // console.log(f1.__proto__ === f2.__proto__)
+        // console.log(f1.__proto__ === Fn.prototype)
+
+        f1.__proto__.sayAge = function () {
+            console.log(this.age)
+        }
+
+        f2.sayAge();
+
+
+        console.log(f1, f2)
+        f1.sayName();
+        f2.sayName()
+
+        Fn.sayName()
+    </script>
+</body>
+
+</html>

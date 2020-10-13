@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function sayHello(time) {
+        //     return new Promise((resolve) => {
+        //         setTimeout(() => {
+        //             resolve()
+        //         }, time);
+        //     })
+        // }
+
+        // sayHello(3000).then(() => {
+        //     console.log("3S之后执行了")
+        //     return sayHello(2000)
+        // }).then(() => {            
+        //     console.log("2S之后执行了")
+        // })
+
+        // async function fn() {
+        //     return 1
+
+        // }
+
+        // fn().then(result => {
+        //     console.log(result)
+        // })
+
+        let num = 123;
+        let p1 = Promise.resolve(num)
+        p1.then(result => {
+            console.log(result)
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
+            console.log("我一定执行")
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{
+    "isFile": false,
+    "filename": "src",
+    "filepath": "./src",
+    "children": [{
+            "isFile": true,
+            "filename": "file.json",
+            "filepath": "src\\file.json",
+            "content": {
+                "name": "my name is src/file.json"
+            },
+            "children": null
+        },
+        {
+            "isFile": true,
+            "filename": "file.txt",
+            "filepath": "src\\file.txt",
+            "content": "my name is src/file.txt",
+            "children": null
+        },
+        {
+            "isFile": false,
+            "filename": "second",
+            "filepath": "src\\second",
+            "children": [{
+                    "isFile": true,
+                    "filename": "file.json",
+                    "filepath": "src\\second\\file.json",
+                    "content": {
+                        "name": "my name is src/second/file.json"
+                    },
+                    "children": null
+                },
+                {
+                    "isFile": false,
+                    "filename": "third",
+                    "filepath": "src\\second\\third",
+                    "children": [{
+                        "isFile": true,
+                        "filename": "file.txt",
+                        "filepath": "src\\second\\third\\file.txt",
+                        "content": "my name is src/second/third/file.txt",
+                        "children": null
+                    }]
+                }
+            ]
+        }
+    ]
+}

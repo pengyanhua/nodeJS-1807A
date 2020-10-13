@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+    </ul>
+    <script src="./js/axios.js"></script>
+    <script>
+        let ul = document.querySelector("ul");
+
+
+        function render() {
+            axios.post("/api/list").then(result => {
+                ul.innerHTML = result.data.map(item => {
+                    return `
+                    <li>
+                        <span>${item.title}</span>    
+                        <b class="del" id=${item.id}>删除</b>
+                    </li>
+                   `
+                }).join("")
+            })
+        }
+
+        render()
+
+        ul.onclick = e => {
+            let tar = e.target;
+            if (tar.className === "del") {
+                let id = tar.id;
+                axios.post("/api/list/del", {
+                    id,
+                }).then(result => {
+                    result.data.code && render()
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

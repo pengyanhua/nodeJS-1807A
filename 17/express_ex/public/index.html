@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1></h1>
+        <button class="add">添加</button>
+        <input type="text" placeholder="请搜索" class="search">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                    <td>性别</td>
+                    <td>操作</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="dialog">
+
+        <div class="content">
+            <h2>奈斯</h2>
+            <input type="text" placeholder="请输入姓名">
+            <input type="text" placeholder="请输入年龄">
+            <input type="text" placeholder="请输入性别">
+            <button class="submit">提交</button>
+        </div>
+    </div>
+
+    <script src="./js/axios.js"></script>
+    <script>
+        let h1 = document.querySelector("h1"),
+            box = document.querySelector("tbody"),
+            add = document.querySelector(".add"),
+            dialog = document.querySelector(".dialog"),
+            submit = document.querySelector(".submit"),
+            ipts = [...document.querySelectorAll(".content input")],
+            search = document.querySelector(".search");
+
+        //显然登录的用户
+        h1.innerHTML = `欢迎----${localStorage.getItem("token")}`;
+
+        // 封装渲染函数
+        let render = () => {
+            // 发送请求
+            axios.post("/api/list").then(result => {
+                // 渲染
+                box.innerHTML = result.data.map(item => {
+                    return `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.title}</td>
+                        <td>${item.age}</td>
+                        <td>${item.sex?"男":"女"}</td>
+                        <td>
+                            <b id=${item.id} class="del">删除</b>    
+                        </td>
+                    </tr>
+                    `
+                }).join("")
+            })
+        }
+
+
+        // 渲染
+        render();
+
+        // 添加事件
+
+        // 事件委托
+        box.onclick = e => {
+            let tar = e.target; //获取事件源
+            // 判断事件源你的类名
+            if (tar.className == "del") {
+                axios.post("/api/list/del", {
+                    id: tar.id,
+                }).then(result => {
+                    // 成功就渲染
+                    result.data.code && render()
+                })
+            }
+
+        }
+        // 添加按钮点击事件
+        add.onclick = () => dialog.style.display = "block";
+        // 提交事件
+        submit.onclick = () => {
+            dialog.style.display = "none";
+            // 获取到那个input的值
+            let obj = {
+                "title": ipts[0].value,
+                "age": ipts[1].value,
+                "sex": ipts[2].value === "男" ? true : false,
+                // 生成随机id  类型是字符串
+                "id": Math.floor(Math.random() * 1000000000000000).toString()
+            }
+            axios.post("/api/list/add", obj).then(result => {
+                // 成功就渲染
+                result.data.code && render()
+            })
+        }
+        // 用户输入事件
+        search.oninput = () => {
+            // 获取搜索的数据
+            let val = search.value;
+            // 发送请求
+            axios.post("/api/list/search", {
+                val,
+            }).then(result => {
+                // 渲染模糊搜索返回的数据
+                box.innerHTML = result.data.map(item => {
+                    return `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.title}</td>
+                        <td>${item.age}</td>
+                        <td>${item.sex?"男":"女"}</td>
+                        <td>
+                            <b id=${item.id} class="del">删除</b>    
+                        </td>
+                    </tr>
+                    `
+                }).join("")
+            })
+        }
+    </script>
+</body>
+
+</html>

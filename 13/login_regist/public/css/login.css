@@ -1,0 +1,27 @@
+.dialog {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    border-radius: 25px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px
+}
+
+input,
+button {
+    height: 46px;
+    margin: 10px 0;
+}
+
+h2 {
+    text-align: center;
+}
+
+html,
+body {
+    background: #333;
+}

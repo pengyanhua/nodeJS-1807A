@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let p1 = new Promise((resolve, reject) => {
+        //     console.log(1)
+        //     // resolve 是成功回调函数
+        //     // reject  是失败回调函数
+
+        //     // promise内部有三个状态 
+        //     // 状态1 pedding 等待中
+        //     // 状态2 fulfilled  成功 
+        //     // 状态3 rejected 失败
+
+        //     // 一但Promise状态改变 就无法改变状态了 
+        //     // 状态1 => 状态2
+        //     // 状态1 => 状态3
+
+        //     setTimeout(function () {
+        //         resolve()
+        //     }, 1000)
+        //     setTimeout(function () {
+        //         reject()
+        //     }, 1000)
+        // })
+
+        // p1.then(() => {
+        //     console.log("升班了")
+        // }).catch(() => {
+        //     console.log("末班了")
+        // })
+
+
+        // 要求 
+        // 三秒之后打印  3
+        // 二秒之后打印  2 
+        // 一秒之后打印  1
+
+
+        // 睡觉函数
+        function sleep(time) {
+            // 返回Promise实例
+            return new Promise((resolve, reject) => {
+                // 延时定时器
+                setTimeout(() => {
+                    // 调用成功函数
+                    resolve();
+                // time毫秒之后执行成功函数
+                }, time)
+            })
+        }
+        // 调用睡觉函数 3000毫秒之后执行成功回调函数resolve
+        // then函数监听成功函数
+        sleep(3000).then(() => {
+            console.log(3)
+            // 再次调用sleep函数 2000毫秒之后执行 
+            // 链式调用  让一步更加合理 易懂  就解决回调地狱问题
+            return sleep(2000)
+        }).then(() => {
+            console.log(2);
+            return sleep(1000)
+        }).then(() => {
+            console.log(1)
+        })
+    </script>
+</body>
+
+</html>

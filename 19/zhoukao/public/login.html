@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="username" placeholder="请输入用户名">
+    <input type="text" class="password" placeholder="请输入密码">
+    <input type="text" class="usercode" placeholder="请输入验证码">
+
+
+    <span>qwe6</span>
+    <button class="code">获取验证码</button>
+    <button class="btn">登录</button>
+    <script src="./js/axios.js"></script>
+    <script>
+        let code = document.querySelector(".code"),
+            span = document.querySelector("span");
+        username = document.querySelector(".username"),
+            password = document.querySelector(".password"),
+            usercode = document.querySelector(".usercode"),
+            btn = document.querySelector(".btn");
+
+        // 获取验证码
+        code.onclick = () => {
+            axios.get("/api/checkcode").then(result => {
+                span.innerHTML = result.data
+            })
+        }
+        // 发送
+        btn.onclick = () => {
+            if (usercode.value === span.innerHTML) {
+                axios.post("/api/login", {
+                    username: username.value,
+                    password: password.value
+                }).then(result => {
+                    if (result.data.code) {
+                        alert("OK")
+                    } else {
+                        alert("NO")
+                    }
+                })
+            } else {
+                alert("验证码不正确")
+            }
+        }
+    </script>
+
+</body>
+
+</html>

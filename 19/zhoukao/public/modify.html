@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>修改</button>
+
+    <script src="./js/axios.js"></script>
+    <script>
+        let id = localStorage.getItem("id"),
+            ipt = document.querySelector("input"),
+            btn = document.querySelector("button"),
+            name = localStorage.getItem("name");
+
+        ipt.value = name;
+
+        btn.onclick = () => {
+            axios.post("/api/list/modify", {
+                id: id,
+                name: ipt.value
+            }).then(result => {
+                if (result.data.code) {
+                    location.href = "index.html"
+                } else {
+                    alert("修改失败")
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

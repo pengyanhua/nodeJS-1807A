@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul></ul>
+    <script>
+        let arr = [{
+            name: "张三",
+            age: "18",
+            id: 1
+        }, {
+            name: "张三1",
+            age: "18",
+            id: 2
+        }, {
+            name: "张三2",
+            age: "18",
+            id: 3
+        }]
+
+        const render = () => {
+            let ul = document.querySelector("ul");
+            ul.innerHTML = arr.map((item) => {
+                return `
+                    <li>${item.name}--------<b id=${item.id}>X</b></li>
+                `
+            }).join("")
+        }
+
+        render()
+
+
+        document.onclick = (e) => {
+            let tar = e.target;
+            if (tar.nodeName === "B") {
+                let id = tar.id;
+                arr = arr.filter(function (item) {
+                    return item.id != id
+                })
+                render()
+            }
+
+        }
+    </script>
+</body>
+
+</html>

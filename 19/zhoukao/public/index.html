@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="./add.html">添加</a>
+    <ul>
+        <li></li>
+    </ul>
+    <script src="./js/axios.js"></script>
+    <script>
+        let ul = document.querySelector("ul");
+
+
+        render()
+
+
+        function render() {
+            axios.get("/api/list").then(result => {
+                ul.innerHTML = result.data.map(item => {
+                    return `
+                        <li>
+                            <span>${item.name}</span>  
+                            <b id="${item.id}" name="${item.name}">编辑</b>  
+                        </li>
+                    `
+                }).join("")
+            })
+        }
+
+        ul.onclick = e => {
+            let tar = e.target;
+            if (tar.nodeName === "B") {
+                localStorage.setItem("id", tar.id)
+                localStorage.setItem("name", tar.getAttribute("name"))
+                location.href = `modify.html`
+            }
+        }
+    </script>
+</body>
+
+</html>

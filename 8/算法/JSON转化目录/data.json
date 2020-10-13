@@ -1,0 +1,47 @@
+{
+    "name": "dist",
+    "pathname": "dist",
+    "type": "folder",
+    "children": [{
+        "name": "index.html",
+        "pathname": "dist/index.html",
+        "type": "file",
+        "size": 217,
+        "ext": ".html",
+        "content": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Document</title>\r\n</head>\r\n\r\n<body>\r\n\r\n</body>\r\n\r\n</html>"
+    }, {
+        "name": "src",
+        "pathname": "dist/src",
+        "type": "folder",
+        "children": [{
+            "name": "css",
+            "pathname": "dist/src/css",
+            "type": "folder",
+            "children": [{
+                "name": "index.css",
+                "pathname": "dist/src/css/index.css",
+                "type": "file",
+                "size": 31,
+                "ext": ".css",
+                "content": "body {\r\n    background: red;\r\n}"
+            }]
+        }, {
+            "name": "images",
+            "pathname": "dist/src/images",
+            "type": "folder",
+            "children": []
+        }, {
+            "name": "js",
+            "pathname": "dist/src/js",
+            "type": "folder",
+            "children": [{
+                "name": "index.js",
+                "pathname": "dist/src/js/index.js",
+                "type": "file",
+                "size": 1678,
+                "ext": ".js",
+                "content": "console.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)\r\nconsole.log(1)"
+            }]
+        }]
+    }]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "哈哈哈，这是我的第一个包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "张三",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "mockjs": "^1.1.0"
+  }
+}

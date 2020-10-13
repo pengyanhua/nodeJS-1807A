@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="username">
+    <input type="text" class="password">
+    <button class="submit">登录</button>
+
+    <script src="./js/axios.js"></script>
+    <script>
+        let username = document.querySelector(".username"),
+            password = document.querySelector(".password"),
+            submit = document.querySelector(".submit");
+        submit.onclick = () => {
+            axios.post("/api/login", {
+                username: username.value,
+                password: password.value,
+            }).then(result => {
+                if (result.data.code) {
+                    localStorage.setItem("token", username.value)
+                    location.href = "index.html";
+                } else {
+                    alert("no")
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

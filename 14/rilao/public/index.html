@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            padding: 0 10px;
+        }
+
+        span.active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title"></div>
+    <ul class="content">
+
+    </ul>
+
+
+    <script src="./js/axios.js"></script>
+    <script>
+        let title = document.querySelector(".title"),
+            content = document.querySelector(".content"),
+            index = 2;//高亮下表
+
+        // 获取数据
+        axios.get("/api/tab").then(result => {
+            // 渲染标题
+            title.innerHTML = result.data.map((item,i)=> {
+                return `
+                    <span class="${index===i?"active":""}">${item.title}</span>
+                `
+            }).join("");
+            // 调用你渲染函数 渲染内容
+            renderContent(result.data);
+            // 渲染标题完毕后  给标题下的每一个子元素添加点击事件
+            [...title.children].forEach((item, i) => {
+                item.onclick = function () {
+                    // 去除原来的高亮
+                    title.children[index].classList.remove("active")
+                    // 修改表
+                    index = i;
+                    // 添加高亮
+                    title.children[index].classList.add("active")
+                    // 渲染内容
+                    renderContent(result.data)
+                }
+            })
+
+        })
+        // 渲染内容
+        let renderContent = (data) => {
+            content.innerHTML = data[index].children.map(item => {
+                return `
+                    <li>${item.title}</li>
+                `
+            }).join("")
+        }
+    </script>
+</body>
+
+</html>

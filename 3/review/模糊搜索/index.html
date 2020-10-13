@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <ul>
+    </ul>
+    <script>
+        // Array.filter(fn);
+        // 语法：返回新数组，数组里面包含fn返回值为真的项
+        let arr = [{
+            name: "张三",
+            age: "18"
+        }, {
+            name: "王五",
+            age: "22"
+        }, {
+            name: "李四",
+            age: "32"
+        }, {
+            name: "李四1",
+            age: "26"
+        }, {
+            name: "李四2",
+            age: "22"
+        }];
+        let ipt = document.querySelector("input"),
+            ul = document.querySelector("ul");
+        ipt.oninput = () => {
+            let res = arr.filter((item) => {
+                return item.name.includes(ipt.value) || item.age.includes(ipt.value)
+            })
+
+            ul.innerHTML = res.map(function (item) {
+                return `
+                    <li>${item.name}-----${item.age}</li>
+                `
+            }).join("")
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+    "name": "build",
+    "file": "fold",
+    "children": [{
+        "name": "css",
+        "file": "fold",
+        "children": [{
+            "name": "index.js",
+            "file": "file",
+            "content": {
+                "type": "Buffer",
+                "data": []
+            }
+        }]
+    }, {
+        "name": "index.html",
+        "file": "file",
+        "content": {
+            "type": "Buffer",
+            "data": []
+        }
+    }, {
+        "name": "js",
+        "file": "fold",
+        "children": []
+    }]
+}

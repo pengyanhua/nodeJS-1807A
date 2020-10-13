@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 语法： class 标识符 {}
+        // 注意：每一类必须有一个constructor,如果没有显示声明constructor构造函数，JS会帮你声明一个空的构造函数
+        // 在构造函数内部 可以通过this绑定自身的属性和方法
+        // 不要用逗号隔开
+        class Fn {
+            // 自身属性
+            sex = "男"
+
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            // 原型方法  （实例共有的）
+            sayName() {
+                console.log(this.name)
+            }
+            static tt() {
+                console.log("我是静态方法")
+            }
+        }
+
+
+        let f1 = new Fn("张三", 18);
+        let f2 = new Fn("李四", 25);
+        console.log(f1, f2);
+
+        Fn.tt()
+    </script>
+</body>
+
+</html>

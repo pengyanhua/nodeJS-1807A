@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function loadImg(url) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let img = new Image();
+                    img.src = url;
+                    img.onload = function () {
+                        resolve(img)
+                    }
+                    img.onerror = function () {
+                        reject()
+                    }
+                }, Math.random() * 3000);
+            })
+        }
+
+        // Promise.all 
+        // 接受一个Promise对象数组  
+        // 当所有数组中的项的状态都成功的时候，会触发自身的then方法
+        // 存在有一个失败的，会执行catch
+
+        // Promise.race 
+        // 接受一个Promsie对象数组
+        // 当其中任意一项率先改变状态是，触发自身then方法
+
+
+        // 图片路径数组
+        let arr = ["img/1.jpg", "img/2.jpg", "img/3.jpg"];
+        // 将数组转化为promise数组
+        let p1 = arr.map(item => loadImg(item));
+
+        Promise.race(p1).then(result => {
+            document.body.append(result)
+        })
+    </script>
+</body>
+
+</html>

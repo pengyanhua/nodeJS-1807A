@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span.active {
+            color: red
+        }
+
+        .content>div {
+            display: none;
+
+        }
+
+        .content>div.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <span>标题1</span>
+        <span>标题2</span>
+        <span>标题3</span>
+        <span>标题4</span>
+    </div>
+    <div class="content">
+        <div>内容一</div>
+        <div>内容二</div>
+        <div>内容三</div>
+        <div>内容四</div>
+    </div>
+
+    <script>
+        class Tab {
+            constructor(opt) {
+                // 合并参数
+                Object.assign(this, opt)
+                // 绑定事件
+                this.bindEvent();
+            }
+            bindEvent() {
+                // 循环标题下所有子元素  
+                [...this.title.children].forEach((item, ind) => {
+                    // 绑定事件
+                    item.onclick = () => {
+                        // 去除原来的高亮
+                        this.title.children[this.index].classList.remove("active");
+                        this.content.children[this.index].classList.remove("active");
+                        // 修改下标变成你点击元素的下标
+                        this.index = ind;
+                        // 添加对应高亮
+                        this.title.children[this.index].classList.add("active");
+                        this.content.children[this.index].classList.add("active");
+                    }
+                })
+            }
+        }
+
+        new Tab({
+            index: 0, //当前高亮
+            title: document.querySelector(".title"), //标题父元素
+            content: document.querySelector(".content") //内容父元素
+        })
+    </script>
+
+
+</body>
+
+</html>

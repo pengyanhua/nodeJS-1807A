@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            display: flex;
+        }
+
+        ul li {
+            padding: 6px 12px;
+            list-style: none;
+            background: skyblue;
+        }
+
+        ul li.active {
+            background: tomato;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>18</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script src="./js/axios.js"></script>
+
+    <script>
+        let index = 2, //下标
+            num = 20; //每页个数
+        let tbody = document.querySelector("tbody"),
+            ul = document.querySelector("ul");
+
+        ul.onclick = e=>{
+            let tar = e.target;
+            if(tar.nodeName === "LI"){
+                index = tar.innerHTML - 1;
+                getData()
+            }
+        }
+
+        
+
+
+        getData()
+
+
+        function getData() {
+            axios.post("/api/page", {
+                index,
+                num,
+            }).then(result => render(result.data))
+        }
+
+
+
+        function render(obj) {
+            // 渲染数据
+            tbody.innerHTML = obj.data.map(item => {
+                return `
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.age}</td>
+                </tr>
+                `
+            }).join("")
+            // 渲染页码
+            let str = "";
+            for (let i = 1; i <= obj.maxLen; i++) {
+                str += `<li class="${index === i-1?"active":""}">${i}</li>`
+            }
+            ul.innerHTML = str;
+        }
+    </script>
+</body>
+
+</html>

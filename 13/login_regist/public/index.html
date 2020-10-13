@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    欢迎来到首页-- <b class="token"></b>
+    <script>
+        let token = document.querySelector(".token");
+        token.innerHTML = localStorage.getItem("token");
+
+
+        if (!localStorage.getItem("token")) {
+            alert("用户没有登录，请登录！")
+            location.href = "login.html"
+        }
+    </script>
+</body>
+
+</html>

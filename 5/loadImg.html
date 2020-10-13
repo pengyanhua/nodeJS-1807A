@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="./loading.gif" alt=""
+        data-src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3617079743,909823013&fm=26&gp=0.jpg">
+    <img src="./loading.gif" alt="" data-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1724357680,3682174917&fm=26&gp=0.jpg">
+    <img src="./loading.gif" alt="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599885977291&di=a4babd3f217ecdd93ad90c2182fdd9d4&imgtype=0&src=http%3A%2F%2Fimg.yzcdn.cn%2Fupload_files%2F2018%2F05%2F13%2Ff3b5c85dc132f7fe05b1e455853b7491.jpg">
+    <img src="./loading.gif" alt="" data-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1234907688,2165991561&fm=26&gp=0.jpg">
+    <img src="./loading.gif" alt="" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599885977283&di=ff0862917dcbfc1f4062d7f44a014132&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ffront%2F559%2Fw800h559%2F20180913%2Fb2fp-hikxxmz9716886.jpg">
+    <script>
+        let imgs = [...document.querySelectorAll("img")];
+
+        imgs.forEach(item => {
+            loadImg(item).then(() => {
+                item.src = item.getAttribute("data-src")
+            })
+        })
+
+        function loadImg(el) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = resolve;
+                img.src = el.getAttribute("data-src")
+            })
+        }
+    </script>
+</body>
+
+</html>

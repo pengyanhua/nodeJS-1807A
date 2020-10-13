@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <div class="dialog">
+        <h2>请登录！</h2>
+        <input type="text" placeholder="请输入用户名" class="username">
+        <input type="text" placeholder="请输入密码" class="password">
+        <button class="login">登录</button>
+        <button> 
+            <a href="register.html">
+                注册
+            </a></button>
+
+
+    </div>
+    <script src="./js/axios.js"></script>
+    <script>
+        // 获取节点
+        let username = document.querySelector(".username"),
+            password = document.querySelector(".password"),
+            login = document.querySelector(".login");
+        login.addEventListener("click", () => {
+            axios.post("/api/login", {
+                username: username.value,
+                password: password.value,
+            }).then(result => {
+                // 判断是否成功
+                if (result.data) {
+                    //  跳转页面
+                    location.href = "index.html";
+                    // 本地保存username
+                    localStorage.setItem("token", username.value)
+                } else {
+                    alert("账户密码错误")
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <img src="" alt="">
+            <p></p>
+            <p></p>
+        </li>
+    </ul>
+    <script src="./js/axios.js"></script>
+    <script>
+        axios.post("/api/list").then(result=>{
+            document.querySelector("ul").innerHTML = result.data.map(item=>{
+                return `
+                <li>
+                    <img src="${item.url}" alt="">
+                    <p>${item.title}</p>
+                    <p>${item.desc}</p>
+                </li>
+                `
+            }).join("")
+        })
+
+    </script>
+</body>
+
+</html>

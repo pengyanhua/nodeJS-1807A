@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>登录</h1>
+    <input type="text" placeholder="请输入用户名" class="username">
+    <input type="text" placeholder="请输入密码" class="password">
+    <button>登录</button>
+    <!-- 1、npm i axios  -->
+    <!-- 2。找到当前node_modules 下 axios /dist 目录 复制文件 axios.js axios.map -->
+    <script src="./js/axios.js"></script>
+    <script>
+        let btn = document.querySelector("button"),
+            username = document.querySelector(".username"),
+            password = document.querySelector(".password");
+        // 添加点击事件
+        btn.onclick = function () {
+            // 发送数据
+            axios.get("/api/login", {
+                // 数据
+                params: {
+                    username: username.value,
+                    password: password.value
+                }
+            }).then(result => {
+                // 返回promise对象 需要.then获取
+                console.log(result)
+            })
+        }
+    </script>
+</body>
+
+</html>

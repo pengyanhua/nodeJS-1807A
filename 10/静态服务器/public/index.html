@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/ajax.js"></script>
+</head>
+
+<body>
+    <h1>返回页面</h1>
+    <script>
+        ajax("get", "data.json", function (data ) {
+            data = JSON.parse(data);
+            console.log(data)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    欢迎登陆
+    <input type="text" class="username">
+    <input type="text" class="password">
+    <button class="btn">登陆</button>
+    <script src="./js/axios.js"></script>
+    <script>
+        //获取节点
+        let username = document.querySelector(".username"),
+            password = document.querySelector(".password"),
+            btn = document.querySelector(".btn");
+        //login点击事件
+        btn.addEventListener("click", () => {
+            // console.log(123);
+            axios.post("/api/user/login", {
+                username: username.value,
+                password: password.value,
+            }).then(result => {
+                result.data.code ? location.href = "index.html" : alert("失败")
+            })
+        })
+    </script>
+</body>
+
+</html>

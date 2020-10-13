@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <h1>这是我的第一个express---Web程序</h1>
+    <ul>
+        <li></li>
+    </ul>
+    <script src="./js/axios.js"></script>
+    <script>
+        let ul = document.querySelector("ul");
+        const render = () => {
+            axios.post("/api/list").then(result => {
+                ul.innerHTML = result.data.map(item => {
+                    return `
+                <li>${item.title}<button class="del" id=${item.id}>删除</button></li>
+                `
+                }).join("")
+            })
+
+        }
+        // 刚进来渲染
+        render();
+        // 事件委托
+        ul.onclick = e => {
+            // 获取事件源
+            let tar = e.target;
+            // 判断点击的是不是删除
+            if (tar.className === "del") {
+                // 获取id
+                let id = tar.id;
+                console.log(id)
+                // 发送数据 删除
+                axios.post("/api/del", {
+                    id,
+                }).then(result => {
+                    // 重新渲染
+                    render();
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

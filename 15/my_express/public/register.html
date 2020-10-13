@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username">
+    <input type="text" id="password">
+    <button id="register">注册</button>
+    <script src="./js/axios.js"></script>
+    <script>
+        register.onclick = () => {
+            axios.post("/api/register", {
+                username: username.value,
+                password: password.value,
+            }).then(result => {
+                if (result.data.code) {
+                    alert("注册成功")
+                    location.href = "./login.html"
+                } else {
+                    alert("此用户已存在")
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

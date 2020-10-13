@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username">
+    <input type="text" id="password">
+    <button id="login">登录</button>
+    <a href="register.html">注册</a>
+    <script src="./js/axios.js"></script>
+    <script>
+        login.onclick = () => {
+            axios.post("/api/login", {
+                username: username.value,
+                password: password.value,
+            }).then(result => {
+                result.data.code ? location.href = "./index.html" : alert("账户面膜不正确")
+            })
+        }
+    </script>
+</body>
+
+</html>
